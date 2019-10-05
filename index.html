@@ -1,0 +1,120 @@
+<html>
+  <head>
+    <link rel="stylesheet" , href="style.css" />
+  </head>
+  <body>
+    <div style="width: 15%" class="col-md-3 col-sm-3 col-xs-6">
+      <a href="#modal1" class="modal-trigger animated-button gibson-two"
+        >Add Questions</a
+      >
+    </div>
+    <div style="width: 15%" class="col-md-3 col-sm-3 col-xs-6">
+        <a href="#modal2" class="modal-trigger animated-button gibson-two" onclick="calcUnits()"
+          >Generate Question Paper</a
+        >
+      </div>
+
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <div class="input-field col s12">
+          <select id="type">
+            <option value="" disabled selected>Type of Question</option>
+            <option value="1">1 Mark</option>
+            <option value="2">2 Mark</option>
+            <option value="5">5 Mark</option>
+          </select>
+          <label>Type of Question</label>
+        </div>
+        <br>
+        <div class="input-field col s12">
+          <select id="unit">
+            <option value="" disabled selected>Unit</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <label>Unit</label>
+        </div>
+        <div class="input-field col s12">
+            <select id="level">
+              <option value="" disabled selected>Level</option>
+              <option value="1">Easy</option>
+              <option value="2">Medium</option>
+              <option value="3">Hard</option>
+            
+            </select>
+            <label>Unit</label>
+          </div>
+        <br>
+        <label for="file" class="btn-2">upload</label>
+        <div class="file-upload">
+          <div class="file-select">
+            <div class="file-select-button" id="fileName">Choose File</div>
+            <div class="file-select-name" id="noFile">No file chosen...</div>
+            <input
+              type="file"
+              name="chooseFile"
+              id="chooseFile"
+              accept="text/plain"
+              onchange="openFile(event)"
+            />
+          </div>
+        </div>
+
+        <img id="output" />
+      </div>
+      <div class="modal-footer">
+        <a  class=" waves-effect waves-green btn-flat " id="submit" onclick="submit()"
+          >Add Question</a
+        >
+      </div>
+    </div>
+
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <div class="input-field col s12">
+                <select id="seltype">
+                  <option value="" disabled selected>Type of Question</option>
+                  <option value="1">1 Mark</option>
+                  <option value="5">5 Mark</option>
+                  <option value="10">10 Mark</option>
+                  <option value="all">ALL</option>
+                </select>
+                <label>Type of Question</label>
+              </div>
+              <div id="units"></div>
+              <div class="input-field col s12">
+                  <select id="no">
+                    <option value="" disabled selected>Number of Question</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                  </select>
+                  <label>Number of Question</label>
+                </div>
+                <div id="data">
+
+                </div>
+        </div>
+        <div class="modal-footer">
+          <a  class=" waves-effect waves-green btn-flat " id="submit1" onclick="generate()"
+            >Generate</a
+          >
+        </div>
+      </div>
+  </body>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script
+    type="text/javascript"
+    src="//code.jquery.com/jquery-1.10.2.min.js"
+  ></script>
+
+  <script src="script.js"></script>
+</html>
