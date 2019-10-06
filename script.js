@@ -30,16 +30,20 @@ $("#chooseFile").bind("change", function() {
   }
 });
 function submit() {
-  let type = document.getElementById("type").value;
   let unit = document.getElementById("unit").value;
   let level = document.getElementById("level").value;
-  if (type !== "" && unit !== "") {
+  if (level !== "" && unit !== "") {
+    check();
     initExt();
-    var d = document.getElementById("submit");
-    d.className += "modal-close";
   } else {
     alert("Enter Details");
   }
+}
+function check() {
+  if(details == undefined) {alert("No Document found");}
+  if(details.indexOf("1 Mark")==-1) {alert("No 1 Mark Section Found");}
+  if(details.indexOf("5 Mark")==-1) {alert("No 5 Mark Section Found");}
+  if(details.indexOf("10 Mark")==-1) {alert("No 10 Mark Section Found");}
 }
 function initExt() {
   extract(5, 1);
@@ -83,6 +87,8 @@ function extract(index, typeQ) {
 
 let units = [];
 function calcUnits() {
+  document.getElementById("units").innerHTML = '';
+  if(arr.length === 0) {alert("No Questions Found");}
   units = [];
   for (let i = 0; i < arr.length; i++) {
     if (units.indexOf(arr[i].unit) === -1) {
@@ -105,6 +111,7 @@ function calcUnits() {
 }
 let questions = [];
 function generate() {
+  if(arr.length === 0) {alert("No Questions Found");}
   let no = document.getElementById("no").value;
   let type = document.getElementById("seltype").value;
   var checkedValue = [];
@@ -114,6 +121,7 @@ function generate() {
       checkedValue.push(inputElements[i].value);
     }
   }
+  if(no !== '' && type != '' && checkedValue.length!== 0) {
   console.log(seltype);
   questionsPerUnit = no / units.length;
   questions = [];
@@ -165,6 +173,9 @@ function generate() {
   }
   console.log(questions);
   genOutput();
+} else {
+  alert("Enter fields");
+}
 }
 function getUnitQuestion(possibleQuestions, unit) {
   unitQuestions = [];
@@ -200,6 +211,7 @@ function getDiffQuestion(unitQuestions, diff, questions) {
   return selQuestion;
 }
 function genOutput() {
+  document.getElementById("data").innerHTML = '';
     console.log(questions[0]);
     let ux = "";
     for (var i = 0; i < questions.length; i++) {
@@ -212,4 +224,22 @@ function genOutput() {
 }
     console.log(ux);
     document.getElementById("data").insertAdjacentHTML("beforeend", ux);
+}
+
+function view() {
+  for(let i=1;i<6;i++) {
+    document.getElementById(`l${i}m1`).innerHTML = `<b>R</b> (${count(i,1,1)}), <b>U</b> (${count(i,1,2)}), <b>A</b> (${count(i,1,3)})`;
+    document.getElementById(`l${i}m5`).innerHTML = `<b>R</b> (${count(i,5,1)}), <b>U</b> (${count(i,5,2)}), <b>A</b> (${count(i,5,3)})`;
+    document.getElementById(`l${i}m10`).innerHTML = `<b>R</b> (${count(i,10,1)}), <b>U</b> (${count(i,10,2)}), <b>A</b> (${count(i,10,3)})`;
+  
+  }
+}
+function count(val, m,diff) {
+  let count = 0;
+  for(let i=0; i < arr.length ; i++) {
+    if(arr[i].unit == val && arr[i].type == m&& arr[i].level == diff) {
+      count++;
+    }
+  }
+  return count
 }

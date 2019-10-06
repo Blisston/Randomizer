@@ -3,6 +3,7 @@
     <link rel="stylesheet" , href="style.css" />
   </head>
   <body>
+    <div class="wap">
     <div style="width: 15%" class="col-md-3 col-sm-3 col-xs-6">
       <a href="#modal1" class="modal-trigger animated-button gibson-two"
         >Add Questions</a
@@ -13,18 +14,15 @@
           >Generate Question Paper</a
         >
       </div>
-
+      <div style="width: 15%" class="col-md-3 col-sm-3 col-xs-6">
+        <a href="#modal3" class="modal-trigger animated-button gibson-two" onclick="view()"
+          >View Questions</a
+        >
+      </div>
+    </div>
     <div id="modal1" class="modal">
       <div class="modal-content">
-        <div class="input-field col s12">
-          <select id="type">
-            <option value="" disabled selected>Type of Question</option>
-            <option value="1">1 Mark</option>
-            <option value="2">2 Mark</option>
-            <option value="5">5 Mark</option>
-          </select>
-          <label>Type of Question</label>
-        </div>
+  
         <br>
         <div class="input-field col s12">
           <select id="unit">
@@ -37,12 +35,14 @@
           </select>
           <label>Unit</label>
         </div>
+        <br>
         <div class="input-field col s12">
             <select id="level">
               <option value="" disabled selected>Level</option>
-              <option value="1">Easy</option>
-              <option value="2">Medium</option>
-              <option value="3">Hard</option>
+              <option value="1">Remebering</option>
+              <option value="2">Understanding</option>
+              <option value="3">Applying</option>
+           
             
             </select>
             <label>Unit</label>
@@ -81,11 +81,13 @@
                   <option value="1">1 Mark</option>
                   <option value="5">5 Mark</option>
                   <option value="10">10 Mark</option>
-                  <option value="all">ALL</option>
+                 
                 </select>
                 <label>Type of Question</label>
               </div>
+              <br>
               <div id="units"></div>
+              <br>
               <div class="input-field col s12">
                   <select id="no">
                     <option value="" disabled selected>Number of Question</option>
@@ -95,6 +97,7 @@
                   </select>
                   <label>Number of Question</label>
                 </div>
+                <br>
                 <div id="data">
 
                 </div>
@@ -102,6 +105,55 @@
         <div class="modal-footer">
           <a  class=" waves-effect waves-green btn-flat " id="submit1" onclick="generate()"
             >Generate</a
+          >
+        </div>
+      </div>
+
+      <div id="modal3" class="modal">
+        <div class="modal-content">
+          <div class="row">
+            <div class="col">
+              <p>Mark Split</p>
+              <p>1 Mark</p>
+              <p>5 Mark</p>
+              <p>10 Mark</p>
+            </div>
+            <div class="col ">
+              <p>Unit 1</p>
+              <p id="l1m1"></p>
+              <p id="l1m5"></p>
+              <p id="l1m10"></p>
+            </div>
+            <div class="col "><p>Unit 2</p>
+              <p id="l2m1"></p>
+              <p id="l2m5"></p>
+              <p id="l2m10"></p>
+            </div>
+            <div class="col "><p>Unit 3</p>
+              <p id="l3m1"></p>
+              <p id="l3m5"></p>
+              <p id="l3m10"></p>
+            </div>
+            <div class="col "><p>Unit 4</p>
+              <p id="l4m1"></p>
+              <p id="l4m5"></p>
+              <p id="l4m10"></p>
+            </div>
+            <div class="col "><p>Unit 5</p>
+              <p id="l5m1"></p>
+              <p id="l5m5"></p>
+              <p id="l5m10"></p>
+            </div>
+           
+          </div>
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <a  class=" waves-effect waves-green btn-flat " 
+            >Close</a
           >
         </div>
       </div>
