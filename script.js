@@ -60,10 +60,10 @@ function extract(index, typeQ) {
   if (mark === -1) {
     mark = details.length;
   }
-  let start = details.indexOf("1. ", border);
-
+  let start = details.indexOf("1.", border);
+console.log(start);
   for (let i = 0; i < mark; i++) {
-    let end = details.indexOf(i + 2 + ". ", border);
+    let end = details.indexOf(i + 2 + ".", border);
     let strend = details.indexOf("endofquestions", border);
     if (end > strend) {
       end = strend;
@@ -227,6 +227,7 @@ function genOutput() {
 }
 
 function view() {
+  console.log('vies');
   for(let i=1;i<6;i++) {
     document.getElementById(`l${i}m1`).innerHTML = `<b>R</b> (${count(i,1,1)}), <b>U</b> (${count(i,1,2)}), <b>A</b> (${count(i,1,3)})`;
     document.getElementById(`l${i}m5`).innerHTML = `<b>R</b> (${count(i,5,1)}), <b>U</b> (${count(i,5,2)}), <b>A</b> (${count(i,5,3)})`;
