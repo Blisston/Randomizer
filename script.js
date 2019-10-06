@@ -85,7 +85,7 @@ console.log(start);
   console.log(arr);
 }
 
-let units = [];
+var units = [];
 function calcUnits() {
   document.getElementById("units").innerHTML = '';
   if(arr.length === 0) {alert("No Questions Found");}
@@ -109,7 +109,7 @@ function calcUnits() {
   console.log(ux);
   document.getElementById("units").insertAdjacentHTML("beforeend", ux);
 }
-let questions = [];
+var questions = [];
 function generate() {
   if(arr.length === 0) {alert("No Questions Found");}
   let no = document.getElementById("no").value;
