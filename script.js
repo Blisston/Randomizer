@@ -1,5 +1,6 @@
 var arr = [];
 let details;
+var ran = [];
 var openFile = function(event) {
   var input = event.target;
 
@@ -151,15 +152,17 @@ function generate() {
       possibleQuestions,
       units[unit]
     );
-    console.log(unitQuestions);
+    questionsPerUnit = Math.floor(questionsPerUnit);
     for (let k = 0; k < questionsPerUnit; k++) {
       let diffQuestion;
+      ran = [];
       for (let j = 0; j < 3; j++) {
         diffQuestion = getDiffQuestion(
           unitQuestions,
           (diff % 3) + 1,
           questions
         );
+        
         diff++;
         if (diffQuestion !== undefined) {
           break;
@@ -169,8 +172,27 @@ function generate() {
       questions.push(diffQuestion);
       }
     }
+
+   
     unit++;
   }
+  if(questions.length!==no) {
+    for (let j = 0; j < 3; j++) {
+      diffQuestion = getDiffQuestion(
+        unitQuestions,
+        (diff % 3) + 1,
+        questions
+      );
+      
+      diff++;
+      if (diffQuestion !== undefined) {
+        break;
+      }
+    }
+    if(diffQuestion !== undefined) {
+      questions.push(diffQuestion);
+      }
+}
   console.log(questions);
   genOutput();
 } else {
@@ -188,25 +210,34 @@ function getUnitQuestion(possibleQuestions, unit) {
   return unitQuestions;
 }
 function getDiffQuestion(unitQuestions, diff, questions) {
-  console.log(diff);
+  console.log(unitQuestions);
   let selQuestion;
+  let random_number = getRandom(unitQuestions.length);
   for (let i = 0; i < unitQuestions.length; i++) {
-    if (questions.length === 0 && unitQuestions[i].level == diff) {
-      selQuestion = unitQuestions[i];
+    if (questions.length === 0 && unitQuestions[random_number].level == diff) {
+    
+      selQuestion = unitQuestions[random_number];
       break;
     }
-    //  console.log(questions.map(function(e) { return e.question; }).indexOf(unitQuestions[i].question)!= -1);
+    random_number = getRandom(unitQuestions.length);
+    if(random_number==null) {
+      ran = [];
+      return selQuestion;
+    }
+      
     if (
-      unitQuestions[i].level == diff &&
+      unitQuestions[random_number].level == diff &&
       questions
         .map(function(e) {
           return e.question;
         })
-        .indexOf(unitQuestions[i].question) == -1
+        .indexOf(unitQuestions[random_number].question) == -1
     ) {
-      selQuestion = unitQuestions[i];
+      selQuestion = unitQuestions[random_number];
+     // console.log(selQuestion);
       break;
     }
+    
   }
   return selQuestion;
 }
@@ -243,4 +274,19 @@ function count(val, m,diff) {
     }
   }
   return count
+}
+
+function getRandom(x) {
+  if(ran.length===x) {
+    return null;
+  } else {
+    let val = Math.floor(Math.random() * 10);
+    if(ran.indexOf(val)==-1) {
+      ran.push(val);
+      console.log(ran);
+      return val;
+    } else {
+      return getRandom(x);
+    }
+  }
 }
