@@ -177,6 +177,9 @@ function generate() {
     unit++;
   }
   if(questions.length!==no) {
+    let ext = no-questions.length;
+
+    for(let i=0;i<ext;i++) {
     for (let j = 0; j < 3; j++) {
       diffQuestion = getDiffQuestion(
         unitQuestions,
@@ -192,6 +195,7 @@ function generate() {
     if(diffQuestion !== undefined) {
       questions.push(diffQuestion);
       }
+    }
 }
   console.log(questions);
   genOutput();
@@ -248,7 +252,7 @@ function genOutput() {
     for (var i = 0; i < questions.length; i++) {
         if(questions[i] !== undefined) {
       let str = `<p>
-        ${questions[i].question} , ${questions[i].type}, ${questions[i].level}, ${questions[i].unit}
+        ${i+1 }  ${questions[i].question} , ${questions[i].type}, ${questions[i].level}, ${questions[i].unit}
       </p>`;
       ux = ux + str;
     }
